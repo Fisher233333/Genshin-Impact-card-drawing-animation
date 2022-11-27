@@ -18,7 +18,7 @@ def PlayVideo(video_path):
             print("End of video")
             sys.exit()
             break
-        if cv2.waitKey(30) & 0xFF == ord("q"):
+        if cv2.waitKey(2) & 0xFF == ord("q"):
             sys.exit()
             break
         WindowName = "Video"

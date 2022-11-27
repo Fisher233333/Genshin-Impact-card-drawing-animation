@@ -2,6 +2,7 @@ import cv2
 import pyautogui
 
 import test
+import test1
 import test2
 
 while True:
@@ -13,9 +14,9 @@ while True:
     video_path='mp4/gongzi.mp4'
     Windowdname = 'Windowdname'
     degree = test2.classify_gray_hist(img1, img2)
-    print(degree[0])
+    # print(degree[0])
     if degree[0] > 0.35:
         print("两张图片一样")
-        test.PlayVideo(video_path)
+        test1.PlayVideo(video_path)
     else:
         pass
