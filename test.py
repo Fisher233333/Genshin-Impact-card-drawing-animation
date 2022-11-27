@@ -4,6 +4,10 @@ import cv2
 import win32con
 import win32gui
 from ffpyplayer.player import MediaPlayer
+
+def draw_circle(event, x, y, flags, param):
+    if event == cv2.EVENT_LBUTTONDBLCLK :
+        sys.exit()
 def PlayVideo(video_path):
     video=cv2.VideoCapture(video_path)
     player = MediaPlayer(video_path)
@@ -14,7 +18,7 @@ def PlayVideo(video_path):
             print("End of video")
             sys.exit()
             break
-        if cv2.waitKey(28) & 0xFF == ord("q"):
+        if cv2.waitKey(30) & 0xFF == ord("q"):
             sys.exit()
             break
         WindowName = "Video"
@@ -24,6 +28,7 @@ def PlayVideo(video_path):
         hwnd = win32gui.FindWindow(None, WindowName)  # 获取句柄，然后置顶
         CVRECT = cv2.getWindowImageRect(WindowName)
         win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 0, 0, CVRECT[2], CVRECT[3], win32con.SWP_SHOWWINDOW)
+        cv2.setMouseCallback(WindowName, draw_circle)
         if val != 'eof' and audio_frame is not None:
             #audio
             img, t = audio_frame
